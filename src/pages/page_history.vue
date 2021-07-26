@@ -52,7 +52,7 @@ export default {
 
   },
   mounted() {
-      this.$vuetify.goTo(0)
+      
     }
 }
 </script>

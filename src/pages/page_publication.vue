@@ -28,7 +28,7 @@ export default {
     //EventTag
   },
   mounted() {
-      this.$vuetify.goTo(0)
+      
     }
 }
 </script>

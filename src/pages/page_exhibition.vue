@@ -31,8 +31,8 @@ export default {
     ExhibitionTag
   },
   mounted() {
-      this.$vuetify.goTo(0)
-    }
+      
+  }
 }
 </script>
 

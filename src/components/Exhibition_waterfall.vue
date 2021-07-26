@@ -6,7 +6,7 @@
           .link(@click="go(item.id)")
             .info1
               .date {{item.start_date}}
-            .img(:style="setBackgroundImage(index)")
+            .img(:style="setBackgroundImage(item.cover)")
             .title1 {{item.title}}
               .slash
             .sub-title {{item.subtitle}}
@@ -16,12 +16,13 @@
 
 <script>
 import ExhibitionService from '@/services/ExhibitionService'
-import MediaService from '@/services/MediaService'
 export default {
   data: function() {
     return {
         exhibitions: [],
         images: [],
+        start: 1,
+        size: 9
 
     }
   },
@@ -30,45 +31,29 @@ export default {
         //console.log(event)
         this.$router.push('/exhibitions/'+ event)
     },
-    setBackgroundImage(id){
-        //console.log(this.images)
-        //console.log(id)
-        let filename=""
-        if(this.images[id] != null ){
-           filename = this.images[id].data.file
-           //console.log(filename)
-        }
-
+    setBackgroundImage(filename){
         return {
-            'background-image': 'url("'+process.env.BASE_API + '/static/uploads/thumb_'+filename+'")'
+            'background-image': 'url("'+filename+'")'
         }
     },
     async getExhibitions(typeOfArt,year,searchStr) {
         console.log(this.exhibitions)
-        this.exhibitions = (await ExhibitionService.showAll(typeOfArt,year,searchStr)).data
+        this.exhibitions = (await ExhibitionService.showAll(typeOfArt,year,searchStr, 1, 9)).data
         console.log(this.exhibitions)
-        console.log(this.images)
-        this.images.length = 0
-        for(let exhibition of this.exhibitions) {
-            this.images.push(await MediaService.show(exhibition.coverId))
-        }
-        console.log(this.images)
+        
     },
   },
   watch : {
       '$route' (to,from) {
         this.exhibitions.length = 0
-        this.images.length = 0
         this.getExhibitions(to.query.typeOfArt,to.query.year,to.query.searchStr)
       }
     },
   async mounted() {
     try {
-        this.exhibitions = (await ExhibitionService.showAll(this.$route.query.typeOfArt,this.$route.query.year,this.$route.query.searchStr)).data
-        //console.log(this.exhibitions)
-        for(let exhibition of this.exhibitions) {
-            this.images.push(await MediaService.show(exhibition.coverId))
-        }
+        let response = await ExhibitionService.showAll(this.$route.query.typeOfArt,this.$route.query.year,this.$route.query.searchStr, 1, 7)
+        this.exhibitions = response.data.data
+        console.log(this.exhibitions)
 
     }catch (err){
       this.error = err

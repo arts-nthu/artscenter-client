@@ -7,7 +7,7 @@
 
                 b-row
                     b-col(cols="12" lg="1")
-                    b-col.cover-pic(:style="setBackgroundImage(image.file)" cols="12" lg="5" @click="showBigPic()")
+                    b-col.cover-pic(:style="setBackgroundImage(exhibition.cover)" cols="12" lg="5" @click="showBigPic()")
 
                     b-col(cols="12" lg="5")
                         .info1
@@ -48,16 +48,6 @@
                                     .li(v-show="exhibition.registration_link")
                                         ._left {{$t('page_exhibition_detail.registration_link')}}
                                         a(class='_right' target="_blank" :href="exhibition.registration_link") 按我報名
-                            .date-info(v-if="exhibition.groupImages.length > 0")
-                                .left
-
-                                .right
-                                    .sub-title
-                                        .slash
-                                        .title1 {{$t('page_exhibition_detail.exhibition_images') }}
-                                    .img-block(style="width: 100%; display: flex; flex-wrap: wrap")
-                                      .img(v-for="image in exhibition.groupImages.slice(0, 6)" style="margin: 5px; height: 100px; width: 100px; background-size: cover;" :style="setBackgroundImage(image.file)")
-                                      b-button(variant="outline-warning" style="height: 100px; width: 100px; margin: 5px;"  @click="showModal()") more
 
 
 
@@ -123,23 +113,23 @@ export default {
         if(this.$i18n.locale == 'ch'){
           if(type=="public_art") return "公共藝術"
           else if(type=="visual_art") return "視覺藝術"
-          else if(type=="show") return "表演藝術"
-          else if(type=="film") return "電影藝術"
+          else if(type=="performing_art") return "表演藝術"
+          else if(type=="film_art") return "電影藝術"
         }
         else if(this.$i18n.locale == 'en'){
           if(type=="public_art") return "Public Art"
           else if(type=="visual_art") return "Visual Art"
-          else if(type=="show") return "Performing Art"
-          else if(type=="film") return "Film Art"
+          else if(type=="performing_art") return "Performing Art"
+          else if(type=="film_art") return "Film Art"
         }
 
     },
     async getExhibition(id) {
         this.exhibition = (await ExhibitionService.show(id)).data
-        this.image = (await MediaService.show(this.exhibition.coverId)).data
+        //this.image = (await MediaService.show(this.exhibition.coverId)).data
     },
     timeformatting(time) {
-        if(time == null)  return ""
+        if(time == null || time == "")  return ""
         else if(typeof(time)!= "undefined") {
             var new_time = time.split(':')
             //var time_zone_time = parseInt(new_time[0]) + 8
@@ -149,9 +139,9 @@ export default {
         else
             return ""
     },
-    setBackgroundImage(fileName) {
+    setBackgroundImage(filename) {
         return {
-            'background-image': 'url("'+process.env.BASE_API + '/static/uploads/'+fileName+'")'
+            'background-image': 'url("' + filename + '")'
         }
     }
   },
@@ -164,7 +154,7 @@ export default {
     },
    async created() {
      this.exhibition = (await ExhibitionService.show(this.$route.params.pid)).data
-     this.image = (await MediaService.show(this.exhibition.coverId)).data
+     //this.image = (await MediaService.show(this.exhibition.coverId)).data
      console.log(this.exhibition)
      this.tempRoute = Object.assign({}, this.$route)
    }

@@ -9,8 +9,8 @@
         .tag-group
             .item(@click="go('public_art')" :class="{active: ($route.params.type=='public_art')}") {{$t('navbar.navbar_content.program.public_art')}}
             .item(@click="go('visual_art')" :class="{active: ($route.params.type=='visual_art')}") {{$t('navbar.navbar_content.program.visual_art')}}
-            .item(@click="go('show')" :class="{active: ($route.params.type=='show')}") {{$t('navbar.navbar_content.program.performing_art')}}
-            .item(@click="go('film')" :class="{active: ($route.params.type=='film')}") {{$t('navbar.navbar_content.program.film_art')}}
+            .item(@click="go('performing_art')" :class="{active: ($route.params.type=='performing_art')}") {{$t('navbar.navbar_content.program.performing_art')}}
+            .item(@click="go('film_art')" :class="{active: ($route.params.type=='film_art')}") {{$t('navbar.navbar_content.program.film_art')}}
         .search
             img.pic(src="../assets/magnifier.svg")
             input.input(type="text" v-model="searchString")

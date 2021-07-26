@@ -142,7 +142,7 @@ export default {
     }
   },
   mounted(){
-    this.$vuetify.goTo(0)
+    
     if(this.$route.query.tab){
       this.tabState = this.$route.query.tab
     }

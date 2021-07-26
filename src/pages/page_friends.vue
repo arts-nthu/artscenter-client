@@ -28,7 +28,7 @@ export default {
     Friends
   },
   mounted() {
-      this.$vuetify.goTo(0)
+      
     }
 }
 </script>

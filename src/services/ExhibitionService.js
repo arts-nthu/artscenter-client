@@ -21,30 +21,41 @@ export default {
       }
     )
   },
-  showAll (typeOfArt,year,searchStr) {
+  showAll (typeOfArt,year,searchStr, start, size) {
     if(searchStr) {
       return Api().get('exhibitions',{
         params: {
-          searchStr: searchStr
+          searchStr: searchStr,
+          start: start,
+          size: size
         }
       })
     }
     else if(typeOfArt) {
       return Api().get('exhibitions',{
         params: {
-          typeOfArt: typeOfArt
+          typeOfArt: typeOfArt,
+          start: start,
+          size: size
         }
       })
     }
     else if(year) {
       return Api().get('exhibitions',{
         params: {
-          year: year
+          year: year,
+          start: start,
+          size: size
         }
       })
     }
     else {
-      return Api().get('exhibitions')
+      return Api().get('exhibitions',{
+        params: {
+          start: start,
+          size: size
+        }
+      })
     }
 
   },

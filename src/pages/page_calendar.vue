@@ -170,7 +170,7 @@ export default {
       this.eventSources.push(this.events_film)
       console.log(this.eventSources)
 
-      this.$vuetify.goTo(0)
+      
       //console.log(this.visual_art_exhibitions)
     }catch(err){
       console.log(err)
