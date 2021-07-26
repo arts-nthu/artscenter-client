@@ -13,7 +13,7 @@
 
 <script>
 import PublicationService from '@/services/PublicationService'
-import MediaService from '@/services/MediaService'
+
 export default {
   data: function() {
     return {
@@ -27,25 +27,17 @@ export default {
         console.log(event)
         this.$router.push('/publications/'+ event)
     },
-    setBackgroundImage(id){
-        //console.log(this.images)
-        //console.log(id)
-        let filename = null
-        if(this.images[id] != null ){
-           filename = this.images[id].data.file
-        }
-        //console.log(filename)
+    setBackgroundImage(filename){
         return {
-            'background-image': 'url("'+'static/uploads/'+filename+'")'
+            'background-image': 'url("'+filename+'")'
         }
     },
   },
   async mounted() {
     try {
         this.publications = (await PublicationService.showAll()).data
-        for(let publication of this.publications) {
-            this.images.push(await MediaService.show(publication.coverId))
-        }
+        
+        
     }catch (err){
       this.error = err
       //console.log(err)

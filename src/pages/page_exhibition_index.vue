@@ -14,10 +14,10 @@
             b-col.cat.cat2(@click="go('visual_art')")
               h3.subtitle(v-if="$i18n.locale == 'ch'") 視覺藝術
               h3.subtitle(v-if="$i18n.locale == 'en'") Visual Art
-            b-col.cat.cat3(@click="go('show')")
+            b-col.cat.cat3(@click="go('performing_art')")
               h3.subtitle(v-if="$i18n.locale == 'ch'") 表演藝術
               h3.subtitle(v-if="$i18n.locale == 'en'") Performing Art
-            b-col.cat.cat4(@click="go('film')")
+            b-col.cat.cat4(@click="go('film_art')")
               h3.subtitle(v-if="$i18n.locale == 'ch'") 電影藝術
               h3.subtitle(v-if="$i18n.locale == 'en'") Film Art
           .cat-group-m.mobile
@@ -27,10 +27,10 @@
             .cat-m.cat-m2(@click="go('visual_art')")
               h3.subtitle(v-if="$i18n.locale == 'ch'") 視覺藝術
               h3.subtitle(v-if="$i18n.locale == 'en'") Visual Art
-            .cat-m.cat-m3(@click="go('show')")
+            .cat-m.cat-m3(@click="go('performing_art')")
               h3.subtitle(v-if="$i18n.locale == 'ch'") 電影藝術
               h3.subtitle(v-if="$i18n.locale == 'en'") Film Art
-            .cat-m.cat-m4(@click="go('film')")
+            .cat-m.cat-m4(@click="go('film_art')")
               h3.subtitle(v-if="$i18n.locale == 'ch'") 電影藝術
               h3.subtitle(v-if="$i18n.locale == 'en'") Film Art
       .down

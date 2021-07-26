@@ -1,5 +1,4 @@
 import BannerService from '../../services/BannerService'
-import MediaService from '../../services/MediaService'
 import ExhibitionService from '../../services/ExhibitionService'
 
 
@@ -50,7 +49,6 @@ const actions = {
       const images = []
       const exhibitions = []
       for(let banner of banners){
-        images.push((await MediaService.show(banner.imageId)).data)
         exhibitions.push((await ExhibitionService.show(banner.exhibitionId)).data)
       }
       commit('fetchBanner',{banners,images,exhibitions})
@@ -67,7 +65,6 @@ const actions = {
       const response = await BannerService.post(formData,auth_token)
       console.log("post banner done")
       const banner = response.data.banners
-      const image = (await MediaService.show(banner.imageId)).data
       const exhibition = (await ExhibitionService.show(banner.exhibitionId)).data
       console.log(image,exhibition)
       commit('createBanner',{banner,image,exhibition})

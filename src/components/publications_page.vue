@@ -53,7 +53,7 @@
 
 <script>
 import PublicationService from '@/services/PublicationService'
-import MediaService from '@/services/MediaService'
+
 export default {
   data () {
     return {
@@ -65,7 +65,6 @@ export default {
     try {
         const pid = this.$route.params.pid
         this.publication = (await PublicationService.show(pid)).data
-        this.image = (await MediaService.show(this.publication.coverId)).data
     } catch (err){
         console.log(err)
     }
@@ -74,11 +73,10 @@ export default {
   methods : {
     async getPublication(id) {
         this.publication = (await PublicationService.show(id)).data
-        this.image = (await MediaService.show(this.publication.coverId)).data
     },
-    setBackgroundImage(fileName) {
+    setBackgroundImage(filename) {
         return {
-            'background-image': 'url("'+'/static/uploads/'+fileName+'")'
+            'background-image': 'url("'+filename+'")'
         }
     }
   },

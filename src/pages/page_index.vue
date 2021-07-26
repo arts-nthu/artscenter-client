@@ -9,7 +9,7 @@
                 :interval="4000"
                 @sliding-start="onSlideStart"
                 @sliding-end="onSlideEnd")
-        b-carousel-slide.s-item(v-for="(item,i) in banners" :key="i" :style="`background-image:url(${setBannerImage(item.media.file)}`")
+        b-carousel-slide.s-item(v-for="(item,i) in banners" :key="i" :style="`background-image:url(${item.image}`")
           ///img(slot="img" class="d-block img-fluid w-100"
              :src="setBannerImage(i)" alt="image slot" @click="goTo(item)")
           //h1 {{exhibitions[i].data.title}}
@@ -82,16 +82,24 @@
 
 <script>
   import BannerService from '@/services/BannerService'
-  import ExhibitionService from '@/services/ExhibitionService'
-  import MediaService from '@/services/MediaService'
   import ExhibitionComingSoon from '../components/Exhibition_coming_soon'
+
   export default {
     components: {
       ExhibitionComingSoon
   },
     data () {
       return {
-        banners:[],
+        banners:[
+          {
+            image: "https://i.imgur.com/zUgMs8j.jpg",
+            title: "清華大學藝術祭"
+          },
+          {
+            image: "https://i.imgur.com/wt88wrU.jpg",
+            title: "應材文藝季"
+          }
+        ],
         exhibitions:[],
         images: [],
         slide:0,
@@ -131,8 +139,8 @@
 
     */
     async created() {
-      this.banners = await BannerService.showAll()
-      this.banners = this.banners.data
+      //this.banners = await BannerService.showAll()
+      //this.banners = this.banners.data
       console.log(this.banners)
     },
     mounted() {
@@ -154,8 +162,8 @@
       .s-item
         width: 100%
         height: 600px
-        background-size: cover
-        background-position: 50% 50%
+        background-size: cover !important
+        background-position: 50% 50% !important
         .bannerImage
           width: 1000px
           height: 650px

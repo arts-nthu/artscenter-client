@@ -70,7 +70,6 @@
 </template>
 <script>
 import ExhibitionService from '@/services/ExhibitionService'
-import MediaService from '@/services/MediaService'
 import VueMarkDown from 'vue-markdown'
 import Gallary from '../components/Gallary'
 export default {
@@ -82,19 +81,7 @@ export default {
         isOpenPic: false
       }
     },
-    /*
-  async mounted() {
-    try {
-        const pid = this.$route.params.pid
-        this.exhibition = (await ExhibitionService.show(pid)).data
-        this.image = (await MediaService.show(this.exhibition.coverId)).data
-        //console.log(this.image)
-    } catch (err){
-        console.log(err)
-    }
-
-  },
-  */
+    
   methods : {
     closePicModal() {
       this.isOpenPic = false
@@ -126,7 +113,6 @@ export default {
     },
     async getExhibition(id) {
         this.exhibition = (await ExhibitionService.show(id)).data
-        //this.image = (await MediaService.show(this.exhibition.coverId)).data
     },
     timeformatting(time) {
         if(time == null || time == "")  return ""
@@ -154,7 +140,6 @@ export default {
     },
    async created() {
      this.exhibition = (await ExhibitionService.show(this.$route.params.pid)).data
-     //this.image = (await MediaService.show(this.exhibition.coverId)).data
      console.log(this.exhibition)
      this.tempRoute = Object.assign({}, this.$route)
    }

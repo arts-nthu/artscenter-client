@@ -21,8 +21,8 @@
                         router-link.sub-item(tag="div" to="/exhibitions/index") 展演節目<br>Program
                         router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=public_art") 公共藝術<br>Public Art
                         router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=visual_art") 視覺藝術<br>Visual Art
-                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=show") 表演藝術<br>Performing<br>Art
-                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=film") 電影藝術<br>Film Art
+                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=performing_art") 表演藝術<br>Performing<br>Art
+                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=film_art") 電影藝術<br>Film Art
                 router-link.m-item(tag="div" to="/publications") 出版典藏<br>Publication
                 router-link.m-item(tag="div" to="/friends") 清藝之友<br>Friends
                 router-link.m-item(tag="div" to="/calendar") 活動月曆<br>Calendar
@@ -40,8 +40,8 @@
                         router-link.sub-item(tag="div" to="/exhibitions/index") Program
                         router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=public_art") Public Art
                         router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=visual_art") Visual Art
-                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=show") Performing<br>Art
-                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=film") Film Art
+                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=performing_art") Performing<br>Art
+                        router-link.sub-item(tag="div" to="/exhibitions?typeOfArt=film_art") Film Art
                 router-link.m-item(tag="div" to="/publications") Publication
                 router-link.m-item(tag="div" to="/friends") Friends
                 router-link.m-item(tag="div" to="/calendar") Calendar

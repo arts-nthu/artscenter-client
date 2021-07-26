@@ -1,26 +1,6 @@
 import Api from '@/services/Api'
 
 export default {
-  post (formData,auth_token) {
-    return Api().post('exhibitions',formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          token:auth_token
-        }
-      }
-    )
-  },
-  put (formData,auth_token,exhibitionId){
-    return Api().put(`exhibitions/${exhibitionId}`,formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          token:auth_token
-        }
-      }
-    )
-  },
   showAll (typeOfArt,year,searchStr, start, size) {
     if(searchStr) {
       return Api().get('exhibitions',{
@@ -34,7 +14,7 @@ export default {
     else if(typeOfArt) {
       return Api().get('exhibitions',{
         params: {
-          typeOfArt: typeOfArt,
+          type: typeOfArt,
           start: start,
           size: size
         }
@@ -64,12 +44,5 @@ export default {
   },
   show (exhibitionsId) {
     return Api().get(`exhibitions/${exhibitionsId}`)
-  },
-  remove (exhibitionsId,auth_token) {
-    return Api().delete(`exhibitions/${exhibitionsId}`,{
-      headers: {
-        token: auth_token
-      }
-    })
   }
 }

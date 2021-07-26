@@ -10,6 +10,13 @@
             .title1 {{item.title}}
               .slash
             .sub-title {{item.subtitle}}
+    b-pagination(
+      v-model="start"
+      :total-rows="rows"
+      :per-page="size"
+      first-number
+      last-number
+    )
 
 
 </template>
@@ -22,7 +29,8 @@ export default {
         exhibitions: [],
         images: [],
         start: 1,
-        size: 9
+        size: 2,
+        rows: 100,
 
     }
   },
@@ -36,9 +44,11 @@ export default {
             'background-image': 'url("'+filename+'")'
         }
     },
-    async getExhibitions(typeOfArt,year,searchStr) {
-        console.log(this.exhibitions)
-        this.exhibitions = (await ExhibitionService.showAll(typeOfArt,year,searchStr, 1, 9)).data
+    async getExhibitions() {
+        let response = await ExhibitionService.showAll(this.$route.query.typeOfArt,this.$route.query.year,this.$route.query.searchStr, this.start, this.size)
+        this.rows = response.data.max_size
+        console.log(this.rows)
+        this.exhibitions = response.data.data
         console.log(this.exhibitions)
         
     },
@@ -46,13 +56,19 @@ export default {
   watch : {
       '$route' (to,from) {
         this.exhibitions.length = 0
-        this.getExhibitions(to.query.typeOfArt,to.query.year,to.query.searchStr)
+        this.start = 1;
+        this.getExhibitions()
+      },
+      'start' () {
+        this.exhibitions.length = 0
+        this.getExhibitions()
       }
     },
   async mounted() {
     try {
-        let response = await ExhibitionService.showAll(this.$route.query.typeOfArt,this.$route.query.year,this.$route.query.searchStr, 1, 7)
+        let response = await ExhibitionService.showAll(this.$route.query.typeOfArt,this.$route.query.year,this.$route.query.searchStr, this.start, this.size)
         this.exhibitions = response.data.data
+        this.rows = response.data.max_size
         console.log(this.exhibitions)
 
     }catch (err){

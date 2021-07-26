@@ -1,4 +1,3 @@
-import MediaService from '../../services/MediaService'
 import ExhibitionService from '../../services/ExhibitionService'
 
 // initial state
@@ -58,7 +57,6 @@ const actions = {
       const response = await ExhibitionService.post(formData,auth_token)
       console.log(response)
       const e = response.data.exhibitions
-      const image = (await MediaService.show(e.coverId)).data
       commit('createExhibition',{e,image})
       self.$emit('close-dialog')
       self.$emit('send-message',{res:response})
@@ -104,7 +102,6 @@ const actions = {
       console.log(response)
       const e = response.data.exhibitions
       console.log(e)
-      const image = (await MediaService.show(e.coverId)).data
       commit('editExhibition',{e,image})
       self.$emit('close-dialog')
       self.$emit('send-message',{res:response})

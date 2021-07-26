@@ -22,7 +22,7 @@
 
 <script>
 import ExhibitionService from '@/services/ExhibitionService'
-import MediaService from '@/services/MediaService'
+
 export default {
     data: function() {
         return {
@@ -79,17 +79,9 @@ export default {
         }
 
     },
-        setBackgroundImage(id){
-        //console.log(this.images)
-        //console.log(id)
-        let filename=""
-        if(this.images[id] != null ){
-           filename = this.images[id].data.file
-           //console.log(filename)
-        }
-
+    setBackgroundImage(id){
         return {
-            'background-image': 'url("'+'static/uploads/thumb_'+filename+'")'
+            'background-image': 'url("'+filename+'")'
         }
     }
 
@@ -98,10 +90,7 @@ export default {
     try {
 
         this.exhibitions = (await ExhibitionService.showComingSoon()).data
-        //console.log(this.exhibitions)
-        for(let exhibition of this.exhibitions) {
-            this.images.push(await MediaService.show(exhibition.coverId))
-        }
+        
         console.log("images")
         //console.log(this.images)
 
