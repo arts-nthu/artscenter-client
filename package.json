@@ -20,7 +20,7 @@
     "cors": "^2.8.4",
     "jquery": "^3.6.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "pug": "^2.0.3",
     "pug-filters": "^3.1.0",
     "pug-loader": "^2.4.0",
